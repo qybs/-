@@ -1,0 +1,100 @@
+//自推表白模板
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表白页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('background.jpg'); /* 替换为你的背景图片路径 */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* 防止滚动 */
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff6347;
+        }
+        p {
+            color: #333333;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        button {
+            background-color: #ff6347;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #e05e40;
+        }
+        #rejectButton {
+            background-color: #ff4500;
+        }
+        #rejectButton:hover {
+            background-color: #e03e00;
+        }
+        /* 禁用长按菜单 */
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>表白</h1>
+        <p>亲爱的[对方名字]：</p>
+        <p>我一直想对你说，你是我生命中最美好的存在。从第一次见到你，我就被你的笑容深深吸引。你的每一个小动作，每一次眼神交流，都让我心动不已。我喜欢和你在一起的每一刻，喜欢听你的声音，喜欢看你开心的样子。我不知道你是否也有同样的感觉，但我希望你能给我一个机会，让我成为你生活中的重要部分。你愿意和我在一起吗？</p>
+        <button onclick="alert('我也喜欢你！')">接受表白</button>
+        <button id="rejectButton">拒绝表白</button>
+    </div>
+
+    <script>
+        // 页面离开时弹出劝导弹窗
+        window.addEventListener('beforeunload', function(event) {
+            event.preventDefault();
+            event.returnValue = '你确定要离开吗？'; // 提示信息
+            return '你确定要离开吗？';
+        });
+
+        // 获取拒绝按钮
+        const rejectButton = document.getElementById('rejectButton');
+
+        // 拒绝按钮点击后逃跑
+        function escapeButton(event) {
+            const x = Math.floor(Math.random() * (window.innerWidth - rejectButton.offsetWidth));
+            const y = Math.floor(Math.random() * (window.innerHeight - rejectButton.offsetHeight));
+            rejectButton.style.position = 'absolute';
+            rejectButton.style.left = `${x}px`;
+            rejectButton.style.top = `${y}px`;
+        }
+
+        // 监听鼠标和触摸事件
+        rejectButton.addEventListener('mouseover', escapeButton);
+        rejectButton.addEventListener('touchstart', escapeButton, { passive: false });
+    </script>
+</body>
+</html>
